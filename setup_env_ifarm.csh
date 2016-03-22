@@ -7,4 +7,4 @@ setenv CODA_LIB ${CODA}/${CODA_OS}/lib
 setenv EVIO_LIB ${CODA_LIB}
 setenv EVIO_INC ${CODA_INC}
 
-setenv LD_LIBRARY_PATH ${PWD}/thirdparty/lib:${CODA_LIB}:${LD_LIBRARY_PATH}
+setenv LD_LIBRARY_PATH /usr/lib64/qt48/lib:${PWD}/thirdparty/lib:${CODA_LIB}:${LD_LIBRARY_PATH}

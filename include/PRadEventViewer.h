@@ -164,6 +164,8 @@ private:
     PRadLogBox *logBox;
     QFuture<bool> future;
     QFutureWatcher<void> watcher;
+
+    TH1D *TDCHist;
 };
 
 #endif

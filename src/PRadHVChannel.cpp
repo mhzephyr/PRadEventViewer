@@ -139,7 +139,8 @@ void PRadHVChannel::queryLoop()
         else if(!loopCount%20)
             heartBeat();
         ++loopCount;
-        this_thread::sleep_for(chrono::seconds(1));
+        //this_thread::sleep_for(chrono::seconds(1));
+        sleep(1);
     }
 }
 

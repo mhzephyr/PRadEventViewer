@@ -13,6 +13,7 @@
 #include "TFile.h"
 #include "TH1.h"
 #include "TF1.h"
+#include "TRandom3.h"
 
 #include "evioUtil.hxx"
 #include "evioFileChannel.hxx"
@@ -50,6 +51,7 @@ PRadEventViewer::PRadEventViewer()
 {
     initView();
     setupUI();
+    TDCHist = new TH1D("TDC", "TDC", 200, -20, 20);
 }
 
 // set up the view for HyCal
@@ -266,6 +268,7 @@ void PRadEventViewer::createStatusWindow()
     histCanvas = new PRadHistCanvas(this);
     histCanvas->AddCanvas(0, 0, 38);
     histCanvas->AddCanvas(1, 0, 46);
+    histCanvas->AddCanvas(2, 0, 46);
 
     statusWindow->addWidget(statusInfoWidget);
     statusWindow->addWidget(histCanvas);
@@ -648,6 +651,14 @@ void PRadEventViewer::UpdateHistCanvas()
         histCanvas->UpdateHist(1, selection->adcHist, fit_min, fit_max);
     }
     histCanvas->UpdateHist(2, handler->GetEnergyHist());
+
+    TDCHist->Reset();
+    TRandom3 *t = new TRandom3();
+    for (int i=0; i<1000; i++) {
+    	TDCHist->Fill(t->Uniform(-20,20));
+    }
+
+    histCanvas->UpdateHist(3, TDCHist);
 }
 
 void PRadEventViewer::SelectModule(HyCalModule* module)
